@@ -1,0 +1,9 @@
+[build]
+  publish = "public"
+  command = "yarn build"
+
+# Avoid caching the Service Worker
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "nocache, max-age=0, must-revalidate, no-store"
