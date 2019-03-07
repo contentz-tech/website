@@ -1,0 +1,20 @@
+{
+  "name": "contentz-website",
+  "description": "Write MDX, get highly optimized website",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Sergio Xalambrí <hello@sergiodxa.com> (https://sergiodxa.com)",
+  "license": "MIT",
+  "scripts": {
+    "build:dev": "node ../contentz/cli.js build",
+    "social": "contentz social",
+    "build": "contentz build",
+    "start": "serve public -p 3000"
+  },
+  "dependencies": {
+    "contentz": "^2.1.1"
+  },
+  "devDependencies": {
+    "serve": "^10.1.2"
+  }
+}

@@ -1,0 +1,546 @@
+---
+title: Documentation
+lang: en
+description: Learn how to use Contentz to create optimized websites.
+---
+
+## Table of Content
+
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Using Articles](#using-articles)
+- [Using Custom Pages](#using-custom-pages)
+- [Generate Social Images](#generate-social-images)
+- [Incremental Build](#incremental-build)
+- [Social Networks & Email Address](#social-networks-email-address)
+- [Edit on GitHub](#edit-on-github)
+- [Support on Patreon](#support-on-patreon)
+- [Styles in MDX](#styles-in-mdx)
+- [Static files](#static-files)
+- [Feed RSS](#feed-rss)
+- [Offline First](#offline-first)
+- [Link Sharing](#link-sharing)
+
+<div id="installation" />
+
+## Installation
+
+You can install Contentz using npm
+
+```bash
+npm install contentz
+```
+
+Or using Yarn
+
+```bash
+yarn add contentz
+```
+
+Both ways work also globally.
+
+---
+
+You could also use it from npx
+
+```bash
+npx contentz
+```
+
+Adding the command at the end (`social` or `build`).
+
+<div id="configuration" />
+
+## Configuration
+
+To start a project you need to create `config.yml` at the root of your project with, at least, the following configuration
+
+```yml
+---
+title: My Website
+description: This is my personal website
+domain: https://my-website.com
+```
+
+Additionally you could define `language` key to set the default language of the website, by default is `en`.
+
+The final file structure of your project should look like this
+
+```file-tree
+[
+  {
+    "name": "my-website",
+    "type": "folder",
+    "children": [
+      {
+        "name": "config.yml",
+        "type": "file"
+      },
+      {
+        "name": "package.json",
+        "type": "file"
+      }
+    ]
+  }
+]
+```
+
+Additional configuration keys could be added and will be explained below in their corresponding sections.
+
+<div id="using-articles" />
+
+## Using Articles
+
+To start using articles create first a folder `/articles` in your project root and inside put your article in an `.mdx` file.
+
+```file-tree
+[
+  {
+    "name": "my-website",
+    "type": "folder",
+    "children": [
+      {
+        "name": "articles",
+        "type": "folder",
+        "children": [{ "name": "hello-world.mdx", "type": "file" }]
+      },
+      {
+        "name": "config.yml",
+        "type": "file"
+      },
+      {
+        "name": "package.json",
+        "type": "file"
+      }
+    ]
+  }
+]
+```
+
+Inside your `hello-world.mdx` use Frontmatter to define metadata
+
+```yml
+---
+title: Hello, World!
+description: My first article
+date: 2019-03-07T15:55:12.167Z
+lang: en
+tags: Article, Contentz, Blog
+published: true
+---
+This is the content of **my first article**.
+```
+
+Now run `contentz build` to create your website with this articles. Contentz will automatically generate a `/articles/` page with the list of articles with the key `published: true`, any article with `published: false` or without that key will not be listed, useful to deploy drafts or private articles. This special page will be added automatically to the header of the website with the name _Articles_.
+
+<div id="using-custom-pages" />
+
+## Using Custom Pages
+
+Custom pages, like this one, works in a similar way to articles, create a `/pages` folder in your root project and a MDX file with the content of the page.
+
+```file-tree
+[
+  {
+    "name": "my-website",
+    "type": "folder",
+    "children": [
+      {
+        "name": "articles",
+        "type": "folder",
+        "children": [{ "name": "hello-world.mdx", "type": "file" }]
+      },
+      {
+        "name": "pages",
+        "type": "folder",
+        "children": [{ "name": "about.mdx", "type": "file" }]
+      },
+      {
+        "name": "config.yml",
+        "type": "file"
+      },
+      {
+        "name": "package.json",
+        "type": "file"
+      }
+    ]
+  }
+]
+```
+
+Inside the content of the page use Frontmatter to set the metadata
+
+```yml
+---
+title: About me
+lang: en
+description: Learn more about me
+---
+This is the content of **my first page**.
+```
+
+After that run `contentz build` to create the website, you will be able to access your page on `/about`, note how Contentz remove the `/pages` from the URL, special names like `index` and `articles` are ignored by Contentz to avoid overlapping the default index and articles pages.
+
+Custom pages are not automatically added to the header as the _Articles_ page, to manually add them use the `config.yml`.
+
+```yml
+---
+title: My Website
+description: This is my personal website
+domain: https://my-website.com
+navigation:
+  - name: About me
+    path: /about/
+```
+
+This `navigation` key is a list of `name` and `path`, it let you not only add links to custom pages but also to external pages.
+
+<div id="generate-social-images" />
+
+## Generate Social Images
+
+Once you have your content created you will want to generate social images to share it on Twitter, Facebook, Slack and other social networks. There are two way to add a social image, the first one is adding a `social` key to the Frontmatter of an article or page with a link to the image or let Contentz generate one.
+
+To generate a social image run the following command
+
+```bash
+contentz social articles/hello-world.mdx pages/about.mdx home error articles
+```
+
+This will generate the social images of your articles and pages, and also for your homepage, your error page (documented below) and your list of articles.
+
+An example social image is:
+
+![](/static/_social/home.png)
+
+That is the social image of the homepage of this same website.
+
+Contentz by default try to link to generated social images, there is nothing to do more than run `contentz social` to generate one and add them to your Git repository.
+
+```file-tree
+[
+  {
+    "name": "my-website",
+    "type": "folder",
+    "children": [
+      {
+        "name": "articles",
+        "type": "folder",
+        "children": [{ "name": "hello-world.mdx", "type": "file" }]
+      },
+      {
+        "name": "pages",
+        "type": "folder",
+        "children": [{ "name": "about.mdx", "type": "file" }]
+      },
+      {
+        "name": "static",
+        "type": "folder",
+        "children": [
+          {
+            "name": "_social",
+            "type": "folder",
+            "children": [
+              {
+                "name": "articles",
+                "type": "folder",
+                "children": [{ "type": "file", "name": "hello-world.png" }]
+              },
+              {
+                "name": "pages",
+                "type": "folder",
+                "children": [{ "type": "file", "name": "about.png" }]
+              },
+              { "type": "file", "name": "home.png" },
+              { "type": "file", "name": "error.png" }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "config.yml",
+        "type": "file"
+      },
+      {
+        "name": "package.json",
+        "type": "file"
+      }
+    ]
+  }
+]
+```
+
+<div id="incremental-build" />
+
+## Incremental Build
+
+Contentz has default support to Incremental Build, what does this mean? If you run `contentz build` two times in a row the second one will be way faster because it does absolutely nothing, when you change or create a file (a page or article) then it will only build that file and the affected files.
+
+- If you create or update an article it will build that article and the list of articles.
+- If you change your configuration it will rebuild everything.
+- If you update Contentz it will rebuild everything.
+- If you create or update a page it will only build that page.
+
+If for some reason you want to disable this feature you will need to set `incremental: false` in your `config.yml`.
+
+<div id="social-networks-email-address" />
+
+## Social Networks & Email Address
+
+In case you want to link your social networks from the homepage it's possible to add them to your `config.yml` under the key `social`.
+
+```yml
+social:
+  twitter: username
+  github: username
+  npm: username
+  linkedin: username
+  dev: username
+  meetup: ID
+```
+
+That is the list of supported social networks, if you need the username (or ID for Meetup) it will automatically add the respective icon in the homepage.
+
+It's also possible to add an email icon using the key `email` in the `config.yml`.
+
+```yml
+email: my@email.com
+```
+
+This will link have a `mailto:` email with the corresponding icon in the homepage too.
+
+The configuration should look like this:
+
+```yml
+---
+title: My Website
+description: This is my personal website
+domain: https://my-website.com
+email: my@email.com
+social:
+  twitter: username
+  github: username
+  npm: username
+  linkedin: username
+  dev: username
+  meetup: ID
+navigation:
+  - name: About me
+    path: /about/
+```
+
+<div id="edit-on-github" />
+
+### Edit on GitHub
+
+If your website is open source you could set your repository URL, Contentz will then build the website and it automatically add the text `Edit on GitHub` in the footer with the GitHub icon.
+
+This is configured with the key `repository` in the `config.yml`.
+
+```yml
+---
+title: My Website
+description: This is my personal website
+domain: https://my-website.com
+repository: https://github.com/username/my-website
+email: my@email.com
+social:
+  twitter: username
+  github: username
+  npm: username
+  linkedin: username
+  dev: username
+  meetup: ID
+navigation:
+  - name: About me
+    path: /about/
+```
+
+<div id="support-on-patreon" />
+
+## Support on Patreon
+
+If you have a Patreon to let people support you with your content, Contentz let you set your Patreon username and it will render a message to incentive people support your writing on Patreon.
+
+This is configured with the key `patreon` in the `config.yml`.
+
+```yml
+---
+title: My Website
+description: This is my personal website
+domain: https://my-website.com
+repository: https://github.com/username/my-website
+patreon: username
+email: my@email.com
+social:
+  twitter: username
+  github: username
+  npm: username
+  linkedin: username
+  dev: username
+  meetup: ID
+navigation:
+  - name: About me
+    path: /about/
+```
+
+This Patreon message will be added below your social networks and email in the homepage and in the footer of each page.
+
+<div id ="styles-in-mdx" />
+
+## Styles in MDX
+
+Contentz use [Emotion](https://emotion.sh) internally to add styles to the website, it also provide access to the `css` prop and the `css` template tag inside the MDX, this let you add HTML elements in-between the Markdown and style them with Emotion.
+
+```jsx
+<div css={{ color: "red" }}>This is red</div>
+<div css={css`color: blue`}>This is blue</div>
+```
+
+These are the two ways to add styles, the first one using the `css` prop and an object literal, the second one using the `css` prop too but using the template tag `css` to write normal CSS code if you prefer that syntax.
+
+<div id ="static-files" />
+
+## Static files
+
+Contentz copy the content of the folder `/static` to your `/public` directory to allow you link images and other kind of static files.
+
+```file-tree
+[
+  {
+    "name": "my-website",
+    "type": "folder",
+    "children": [
+      {
+        "name": "articles",
+        "type": "folder",
+        "children": [{ "name": "hello-world.mdx", "type": "file" }]
+      },
+      {
+        "name": "pages",
+        "type": "folder",
+        "children": [{ "name": "about.mdx", "type": "file" }]
+      },
+      {
+        "name": "static",
+        "type": "folder",
+        "children": [
+          {
+            "name": "_social",
+            "type": "folder",
+            "children": [
+              {
+                "name": "articles",
+                "type": "folder",
+                "children": [{ "type": "file", "name": "hello-world.png" }]
+              },
+              {
+                "name": "pages",
+                "type": "folder",
+                "children": [{ "type": "file", "name": "about.png" }]
+              },
+              { "type": "file", "name": "home.png" },
+              { "type": "file", "name": "error.png" }
+            ]
+          },
+          { "type": "file", "name": "avatar.jpg" }
+        ]
+      },
+      {
+        "name": "config.yml",
+        "type": "file"
+      },
+      {
+        "name": "package.json",
+        "type": "file"
+      }
+    ]
+  }
+]
+```
+
+<div id="feed-rss" />
+
+## Feed RSS
+
+If you write articles Contentz will automatically generate a feed RSS, place it in `/atom.xml` and link it from the header of each page. There is nothing required to make this work and is not possible to disable it.
+
+<div id="offline-first" />
+
+## Offline First
+
+Contentz generate a Service Worker automatically with the minimum required code to cache every file of your website and use it if the user doesn't have internet connection, which means your website can work offline after the first time the user access it.
+
+<div id="link-sharing" />
+
+## Link Sharing
+
+If you want to have a list of shared links, for some reason, you could create a `links.yml` file at the root of your project, similar to this one.
+
+```yml
+---
+- url: https://sergiodxa.com/articles/presentando-contentz/
+  title: Presentando Contentz
+  comment: Contentz, un Pure Static Site Generator para obtener un sitio web super optimizado
+  date: 2019-03-05T21:03:17.909Z
+```
+
+When running `contentz build` Content will automatically pick it up and create a `/links/` page with your list of links in a design similar to `/articles`. It will also link to it from the header of each page with the text _Link_.
+
+```file-tree
+[
+  {
+    "name": "my-website",
+    "type": "folder",
+    "children": [
+      {
+        "name": "articles",
+        "type": "folder",
+        "children": [{ "name": "hello-world.mdx", "type": "file" }]
+      },
+      {
+        "name": "pages",
+        "type": "folder",
+        "children": [{ "name": "about.mdx", "type": "file" }]
+      },
+      {
+        "name": "static",
+        "type": "folder",
+        "children": [
+          {
+            "name": "_social",
+            "type": "folder",
+            "children": [
+              {
+                "name": "articles",
+                "type": "folder",
+                "children": [{ "type": "file", "name": "hello-world.png" }]
+              },
+              {
+                "name": "pages",
+                "type": "folder",
+                "children": [{ "type": "file", "name": "about.png" }]
+              },
+              { "type": "file", "name": "home.png" },
+              { "type": "file", "name": "error.png" }
+            ]
+          },
+          { "type": "file", "name": "avatar.jpg" }
+        ]
+      },
+      {
+        "name": "config.yml",
+        "type": "file"
+      },
+      {
+        "name": "links.yml",
+        "type": "file"
+      },
+      {
+        "name": "package.json",
+        "type": "file"
+      }
+    ]
+  }
+]
+```

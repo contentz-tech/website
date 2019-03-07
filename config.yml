@@ -1,0 +1,11 @@
+---
+title: Contentz
+description: Write MDX, Get a Highly Optimized Website
+domain: https://contentz.tech
+repository: https://github.com/sergiodxa/contentz-website
+social:
+  github: sergiodxa/contentz
+navigation:
+  - name: Documentation
+    path: /docs/
+incremental: false
