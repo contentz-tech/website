@@ -8,4 +8,6 @@ social:
 navigation:
   - name: Documentation
     path: /docs/
+  - name: Code
+    path: https://github.com/sergiodxa/contentz
 incremental: false
