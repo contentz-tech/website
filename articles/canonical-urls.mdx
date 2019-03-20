@@ -1,0 +1,26 @@
+---
+title: Canonical URLs
+description: Learn how to use canonical URls in an article or page using Contentz
+date: 2019-03-13T18:44:01.416Z
+published: true
+---
+
+import CanonicalURL from "contentz/src/components/canonical.js";
+
+Since the version one of Contentz it has supported the usage of canonical URLs. That mean if you set `canonical_url: URL` in any article or page it will add a meta tag similar to this one.
+
+```html
+<meta rel="canonical" href="URL"/>
+```
+
+This will tell Google the original source of the content in that article or page is the defined URL and then it will send the traffic to that webpage. This is useful in case you published a content in another website and want to syndicate to your own website to keep a copy but without duplicating content.
+
+## The Canoncial URL element
+
+Starting version `2.7.0` Contentz render a canonical URL element below the description of the article linking to the original article. It will look like to this one.
+
+<CanonicalURL value="https://contentz.tech" />
+
+> ☝️That is the real component.
+
+This will be added automatically to each article or page if you add the `canonical_url` to the file metadata so you don't have to do anything.
