@@ -2,27 +2,8 @@
 title: Documentation
 lang: en
 description: Learn how to use Contentz to create optimized websites.
+toc: true
 ---
-
-## Table of Content
-
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Using Articles](#using-articles)
-- [Using Custom Pages](#using-custom-pages)
-- [Generate Social Images](#generate-social-images)
-- [Incremental Build](#incremental-build)
-- [Social Networks & Email Address](#social-networks-email-address)
-- [Edit on GitHub](#edit-on-github)
-- [Support on Patreon](#support-on-patreon)
-- [Styles in MDX](#styles-in-mdx)
-- [Static files](#static-files)
-- [Feed RSS](#feed-rss)
-- [Offline First](#offline-first)
-- [Link Sharing](#link-sharing)
-- [Internationalization](#internationalization)
-
-<div id="installation" />
 
 ## Installation
 
@@ -49,8 +30,6 @@ npx contentz
 ```
 
 Adding the command at the end (`social` or `build`).
-
-<div id="configuration" />
 
 ## Configuration
 
@@ -87,8 +66,6 @@ The final file structure of your project should look like this
 ```
 
 Additional configuration keys could be added and will be explained below in their corresponding sections.
-
-<div id="using-articles" />
 
 ## Using Articles
 
@@ -133,8 +110,6 @@ This is the content of **my first article**.
 ```
 
 Now run `contentz build` to create your website with this articles. Contentz will automatically generate a `/articles/` page with the list of articles with the key `published: true`, any article with `published: false` or without that key will not be listed, useful to deploy drafts or private articles. This special page will be added automatically to the header of the website with the name _Articles_.
-
-<div id="using-custom-pages" />
 
 ## Using Custom Pages
 
@@ -195,8 +170,6 @@ navigation:
 ```
 
 This `navigation` key is a list of `name` and `path`, it let you not only add links to custom pages but also to external pages.
-
-<div id="generate-social-images" />
 
 ## Generate Social Images
 
@@ -271,8 +244,6 @@ Contentz by default try to link to generated social images, there is nothing to 
 ]
 ```
 
-<div id="incremental-build" />
-
 ## Incremental Build
 
 Contentz has default support to Incremental Build, what does this mean? If you run `contentz build` two times in a row the second one will be way faster because it does absolutely nothing, when you change or create a file (a page or article) then it will only build that file and the affected files.
@@ -283,8 +254,6 @@ Contentz has default support to Incremental Build, what does this mean? If you r
 - If you create or update a page it will only build that page.
 
 If for some reason you want to disable this feature you will need to set `incremental: false` in your `config.yml`.
-
-<div id="social-networks-email-address" />
 
 ## Social Networks & Email Address
 
@@ -330,8 +299,6 @@ navigation:
     path: /about/
 ```
 
-<div id="edit-on-github" />
-
 ### Edit on GitHub
 
 If your website is open source you could set your repository URL, Contentz will then build the website and it automatically add the text `Edit on GitHub` in the footer with the GitHub icon.
@@ -356,8 +323,6 @@ navigation:
   - name: About me
     path: /about/
 ```
-
-<div id="support-on-patreon" />
 
 ## Support on Patreon
 
@@ -387,8 +352,6 @@ navigation:
 
 This Patreon message will be added below your social networks and email in the homepage and in the footer of each page.
 
-<div id ="styles-in-mdx" />
-
 ## Styles in MDX
 
 Contentz use [Emotion](https://emotion.sh) internally to add styles to the website, it also provide access to the `css` prop and the `css` template tag inside the MDX, this let you add HTML elements in-between the Markdown and style them with Emotion.
@@ -399,8 +362,6 @@ Contentz use [Emotion](https://emotion.sh) internally to add styles to the websi
 ```
 
 These are the two ways to add styles, the first one using the `css` prop and an object literal, the second one using the `css` prop too but using the template tag `css` to write normal CSS code if you prefer that syntax.
-
-<div id ="static-files" />
 
 ## Static files
 
@@ -460,19 +421,13 @@ Contentz copy the content of the folder `/static` to your `/public` directory to
 ]
 ```
 
-<div id="feed-rss" />
-
 ## Feed RSS
 
 If you write articles Contentz will automatically generate a feed RSS, place it in `/atom.xml` and link it from the header of each page. There is nothing required to make this work and is not possible to disable it.
 
-<div id="offline-first" />
-
 ## Offline First
 
 Contentz generate a Service Worker automatically with the minimum required code to cache every file of your website and use it if the user doesn't have internet connection, which means your website can work offline after the first time the user access it.
-
-<div id="link-sharing" />
 
 ## Link Sharing
 
@@ -545,8 +500,6 @@ When running `contentz build` Content will automatically pick it up and create a
   }
 ]
 ```
-
-<div id="internationalization" />
 
 ## Internationalization
 
