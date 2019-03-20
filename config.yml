@@ -9,3 +9,4 @@ navigation:
   - name: Documentation
     path: /docs/
 incremental: false
+language: en
