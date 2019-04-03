@@ -1,0 +1,37 @@
+---
+title: Introducing the init command
+description: Learn how to use the new init command to initialize a website using Contentz.
+date: 2019-04-03T05:21:19.584Z
+published: true # Change to `true` to list it
+---
+
+Starting at version `3.4.0` Contentz comes with a `init` command that could be used to generate a new website using Contentz.
+
+To create a new website using Contentz run a single command:
+
+```shell
+npx contentz init
+```
+
+This will initialize a new website inside the directory you run the command. If you want to create it in another directory run the following command:
+
+```shell
+npx contentz init my-blog
+```
+
+This will create a directory `my-blog` and initialize the website there.
+
+The initialize process will run the following steps:
+
+- Create the directory if it doesn't exists.
+- Create the directories `articles` and `pages`.
+- Initialize Git inside root directory.
+- Create a `.gitignore`.
+- Create a `package.json` with the scripts `build`, `social`, `write`, `watch`, `dev` and `start`.
+- Create a `README.md` with a basic documentation.
+- Create a `config.yml` with the basic configuration of your website.
+- Install Contentz as dependency.
+- Install concurrently, husky, lint-staged, serve and watch as development dependencies.
+- Build the website one time.
+
+After that you are ready to access your website and start writing!
