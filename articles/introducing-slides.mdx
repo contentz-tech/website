@@ -1,0 +1,31 @@
+---
+title: Introducing Slides Support
+description: Introducing support to Slide Decks in Contentz.
+date: 2019-04-17T04:03:11.458Z
+published: true
+---
+
+Since version 3.6.0 Contentz have had support to slides, but starting version 3.10.0 it has full support. What does this mean? You can now create a `slides` folder with a MDX file and it will be transformed to a slide deck.
+
+## Creating a Slide Deck
+
+Create the folder `slides` using `mkdir slides` and inside a `.mdx` file, let's name it `introducing-contentz.mdx`. Inside this file you should use Frontmatter to define the following supported metadata:
+
+- `title`, the title displayed in the list of slides and the browser tab.
+- `date`, the date when it was published, it will be used in the list.
+- `published`, to hide the slide from `robots.txt`.
+- `description`, a few words describing the talk, it will be used in the list.
+
+Then write the content, to divide slides use the separator `---`. Contentz will split the file using those characters and create a single HTML per each part.
+
+## The Results
+
+Each slide deck will be placed in `public/slides` in a directory with the same name of the MDX file. Inside it will have an `index.html` with the first slide and the next slides will be named with a number starting at 1 (eg. `1.html`, `2.html`).
+
+Each slide will load a tiny JavaScript, it will only be generated if you have slides, which will listen to the left and right arrows key presses to change to the previous or next slide, the code detect if it's the first and last slide and avoid getting a not found error.
+
+Contentz will also create an `index.html` inside `public/slides` with a list of all the slides, similar to the list of articles or links. It will be linked in the header of the website with the title `Talks` if it exists.
+
+## Example
+
+You can see a real world example right now going to https://sergiodxa.com/slides/react-hooks/.
