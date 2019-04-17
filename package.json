@@ -12,9 +12,9 @@
     "start": "serve public -p 3000"
   },
   "dependencies": {
-    "contentz": "3.8.1"
+    "contentz": "3.10.0"
   },
   "devDependencies": {
-    "serve": "^10.1.2"
+    "serve": "11.0.0"
   }
 }
