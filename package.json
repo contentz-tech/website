@@ -6,7 +6,6 @@
   "author": "Sergio Xalambrí <hello@sergiodxa.com> (https://sergiodxa.com)",
   "license": "MIT",
   "scripts": {
-    "build:dev": "node ../contentz/cli.js build",
     "social": "contentz social",
     "build": "contentz build",
     "start": "serve public -p 3000"
