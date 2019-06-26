@@ -1,5 +1,9 @@
 ---
+- url: https://sergiodxa.com/articles/introducing-contentz/
+  title: Introducing Contentz
+- url: https://sergiodxa.com/articles/contentz-netlify/
+  title: Deploy de Contentz a Netlify
+- url: https://sergiodxa.com/articles/contentz-es-omakase/
+  title: Contentz es Omakase
 - url: https://sergiodxa.com/articles/presentando-contentz/
   title: Presentando Contentz
-  comment: Contentz, un Pure Static Site Generator para obtener un sitio web super optimizado
-  date: 2019-03-05T21:03:17.909Z
