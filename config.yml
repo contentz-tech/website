@@ -2,14 +2,14 @@
 title: Contentz
 description: Create Content, Get a Highly Optimized Website
 domain: https://contentz.tech
-repository: https://github.com/sergiodxa/contentz-website
+repository: https://github.com/contentz-tech/website
 social:
   github: sergiodxa/contentz
 navigation:
   - name: Documentation
     path: /docs/
   - name: Code
-    path: https://github.com/sergiodxa/contentz
+    path: https://github.com/contentz-tech
 incremental: false
 language: en
 analytics: UA-48432002-11
