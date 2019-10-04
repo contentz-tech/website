@@ -11,7 +11,7 @@
     "start": "serve public -p 3000"
   },
   "dependencies": {
-    "@contentz/build": "^2.3.0",
+    "@contentz/build": "^2.4.0",
     "contentz": "3.14.1"
   },
   "devDependencies": {
