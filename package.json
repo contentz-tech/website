@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@emotion/core": "^10.0.20",
-    "react": "^16.10.1",
+    "react": "^16.10.2",
     "serve": "11.2.0"
   }
 }
