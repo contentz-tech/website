@@ -15,7 +15,7 @@
     "contentz": "3.14.1"
   },
   "devDependencies": {
-    "@emotion/core": "^10.0.21",
+    "@emotion/core": "^10.0.22",
     "react": "^16.11.0",
     "serve": "11.2.0"
   }
