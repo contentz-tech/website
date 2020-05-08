@@ -18,6 +18,6 @@
   "devDependencies": {
     "@emotion/core": "^10.0.22",
     "react": "^16.13.1",
-    "serve": "11.2.0"
+    "serve": "11.3.0"
   }
 }
