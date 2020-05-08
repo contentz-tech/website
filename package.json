@@ -11,8 +11,9 @@
     "start": "serve public -p 3000"
   },
   "dependencies": {
-    "@contentz/build": "^2.5.2",
-    "contentz": "3.14.1"
+    "@contentz/build": "^2.5.5",
+    "@contentz/social": "^3.14.3",
+    "contentz": "^3.14.1"
   },
   "devDependencies": {
     "@emotion/core": "^10.0.22",
